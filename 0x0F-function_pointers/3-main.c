@@ -1,42 +1,40 @@
 #include "3-calc.h"
 
 /**
- * main - entry point of the program
- * @argc: number of command line arguments
- * @argv: nuber of command line argument strings
- * Return: 0 or 98
+ * main - check the code for Holberton School students.
+ * @argc: argument count.
+ * @argv: argument vector.
+ *
+ * Return: Always 0.
  */
 int main(int argc, char *argv[])
 {
-	char *get_op;
-	int num1, num2, ans;
-	int (*res)(int, int);
+	int a, b;
+	int (*operation)(int, int);
 
 	if (argc != 4)
 	{
 		printf("Error\n");
-		return (98);
+		exit(98);
 	}
 
-	num1 = atoi(argv[1]);
-	get_op = argv[2];
-	num2 = atoi(argv[3]);
-
-	if (get_op_func(argv[2]) == NULL || argv[2][1])
-			{
+	if (argv[2][1])
+	{
 		printf("Error\n");
 		exit(99);
 	}
 
-	if ((*get_op == '/' || *get_op == '%') && (*argv[3] == 0))
+	operation = get_op_func(argv[2]);
+
+	if (operation == NULL)
 	{
 		printf("Error\n");
-		exit(100);
+		exit(99);
 	}
 
-	res = get_op_func(get_op);
-	ans = res(num1, num2);
+	a = atoi(argv[1]);
+	b = atoi(argv[3]);
 
-	printf("%d\n", ans);
+	printf("%d\n", operation(a, b));
 	return (0);
-	}
+}
