@@ -8,9 +8,9 @@
  */
 int main(int argc, char *argv[])
 {
-	char *operator;
-	int num1, num2;
-	int (*operation)(int, int);
+	char *get_op;
+	int num1, num2, ans;
+	int (*res)(int, int);
 
 	if (argc != 4)
 	{
@@ -19,12 +19,24 @@ int main(int argc, char *argv[])
 	}
 
 	num1 = atoi(argv[1]);
-	operator = argv[2];
+	get_op = argv[2];
 	num2 = atoi(argv[3]);
 
-	operation = get_op_func(operator);
+	if (get_op_func(argv[2]) == NULL || argv[2][1])
+			{
+		printf("Error\n");
+		exit(99);
+	}
 
-	printf("%d\n", operation(num1, num2));
+	if ((get_op == '/' || get_op == '%') && (*argv[3] == '0'))
+	{
+		printf("Error\n");
+		exit(100);
+	}
 
+	res = get_op_func(get_op);
+	ans = res(num1, num2);
+
+	printf("%d\n", ans);
 	return (0);
-}
+	}
