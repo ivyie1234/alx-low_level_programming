@@ -8,11 +8,13 @@
  * f: float
  * s: char * (if the string is NULL, print (nil) instead)
  * Any other char should be ignored.
+ * Return: void
  */
 void print_all(const char * const format, ...)
 {
 	char *separator = "";
 	unsigned int i = 0;
+
 	va_list args;
 
 	va_start(args, format);
