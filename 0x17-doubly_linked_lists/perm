@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Check if a filename is provided as an argument
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <filename>"
+        exit 1
+	fi
+
+# Get the filename provided as an argument
+	filename=$1
+
+# Check if the file exists
+	if [ ! -e "$filename" ]; then
+	    echo "File '$filename' does not exist."
+	        exit 1
+		fi
+
+# Add 777 permission to the file
+		chmod 777 "$filename"
+
+		echo "Permissions changed to 777 for file: $filename"
